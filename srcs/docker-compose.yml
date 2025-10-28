@@ -1,0 +1,36 @@
+services:
+  mariadb:
+    container_name: mariadb
+    build:
+      context: ./requirements/mariadb
+    networks:
+      - mariadb_network
+    volumes:
+      - db-data:/var/lib/mysql
+
+  wordpressphp:
+    container_name: wordpress
+    build:
+      context: ./requirements/wordpress
+    volumes:
+      - /home/juan-ant/data:/var/www/html/wp-content
+    networks:
+      - mariadb_network
+      - nginx_network
+
+  nginx:
+    container_name: nginx
+    build:
+      context: ./requirements/nginx
+    ports:
+      - "443:443"
+    volumes:
+      - /home/juan-ant/data:/var/www/html/wp-content
+    networks:
+      - nginx_network
+
+networks:
+  mariadb_network:
+    name: mariadb_network
+  nginx_network:
+    name: nginx_network
