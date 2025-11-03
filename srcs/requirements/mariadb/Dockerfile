@@ -10,6 +10,8 @@ RUN apt install mariadb-server -y
 
 EXPOSE 3306
 
+COPY conf/mariadb.cnf /etc/mysql/mariadb.cnf
+
 COPY tools/script.sh /
 
 RUN chmod 777 script.sh
