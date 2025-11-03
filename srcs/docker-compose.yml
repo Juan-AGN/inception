@@ -7,13 +7,15 @@ services:
       - mariadb_network
     volumes:
       - db-data:/var/lib/mysql
+    env_file:
+      - .env
 
   wordpressphp:
     container_name: wordpress
     build:
       context: ./requirements/wordpress
     volumes:
-      - /home/juan-ant/data:/var/www/html/wp-content
+      - wp-data:/var/www/html/wp-content
     networks:
       - mariadb_network
       - nginx_network
@@ -25,7 +27,7 @@ services:
     ports:
       - "443:443"
     volumes:
-      - /home/juan-ant/data:/var/www/html/wp-content
+      - wp-data:/var/www/html/wp-content
     networks:
       - nginx_network
 
@@ -34,3 +36,19 @@ networks:
     name: mariadb_network
   nginx_network:
     name: nginx_network
+
+volumes:
+  db-data:
+    name: database
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: "/home/user/database"
+  wp-data:
+    name: wp
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: "/home/user/wordpress"
