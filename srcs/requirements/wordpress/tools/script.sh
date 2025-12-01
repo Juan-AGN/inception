@@ -4,9 +4,13 @@ PHP_VERSION=$(php -r "echo PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION;")
 
 mkdir -p /run/php
 
-chown -R www-data.www-data /var/www/html/wordpress
+if [! -f /var/www/html/wordpress]; then
+    mv /wordpress /var/www/html/wordpress
+fi
 
-chmod -R 755 /var/www/html/wordpress
+chown -R www-data:www-data /var/www/
+
+chmod -R 755 /var/www/
 
 sed -i "s#listen = /run/php/php${PHP_VERSION}-fpm.sock#listen = 0.0.0.0:9000#g" /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf
 

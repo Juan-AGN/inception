@@ -10,8 +10,8 @@ services:
     env_file:
       - .env
 
-  wordpressphp:
-    container_name: wordpressphp
+  wordpress:
+    container_name: wordpress
     depends_on:
       - mariadb
     build:
@@ -27,7 +27,7 @@ services:
   nginx:
     container_name: nginx
     depends_on:
-      - wordpressphp
+      - wordpress
     build:
       context: ./requirements/nginx
     ports:
@@ -50,11 +50,11 @@ volumes:
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: "/home/juan-ant/database/"
+      device: "/home/juan-ant/data/database/"
   wp-data:
     name: wp-data
     driver: local
     driver_opts:
       type: 'none'
       o: 'bind'
-      device: "/home/juan-ant/wordpress/"
+      device: "/home/juan-ant/data/wordpress/"

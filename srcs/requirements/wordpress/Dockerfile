@@ -10,11 +10,9 @@ RUN mkdir -p /var/www/html
 
 RUN wget -O /tmp/wordpress.tar.gz https://wordpress.org/latest.tar.gz
 
-RUN tar -xzf /tmp/wordpress.tar.gz -C /var/www/html && rm /tmp/wordpress.tar.gz
+RUN tar -xzf /tmp/wordpress.tar.gz -C / && rm /tmp/wordpress.tar.gz
 
 RUN apt install -y mariadb-client
-
-EXPOSE 9000
 
 COPY tools/script.sh /
 
