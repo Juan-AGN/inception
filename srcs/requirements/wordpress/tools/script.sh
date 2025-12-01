@@ -4,7 +4,7 @@ PHP_VERSION=$(php -r "echo PHP_MAJOR_VERSION . '.' . PHP_MINOR_VERSION;")
 
 mkdir -p /run/php
 
-if [! -f /var/www/html/wordpress]; then
+if [ ! -f /var/www/html/wordpress ]; then
     mv /wordpress /var/www/html/wordpress
 fi
 
