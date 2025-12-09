@@ -2,36 +2,36 @@ _This project has been created as part of the 42 curriculum by juan-ant._
 <br>
 # INCEPTION
 ## 1 - Description
-Inception is a project about docker, it consist in setting up an:
+Inception is a project about Docker, it consists in setting up:
  - Container for nginx
  - Container for Wordpress and PHP
  - Container for MariaDB
 
-And setting up the required connections for each container, being able tath way to deploy an functional Wordpress.
+And setting up the required connections for each container, being able that way to deploy a functional Wordpress.
 
- - **Virtual Machines vs Docker** - Virtual machines consist on an emulation of kernel and software, docker only user the software, using the kernel of the host machine.
- - **Secrets vs Environment Variables** - Secret are aplied during machine creation, env are used during the container's execution.
- - **Docker Network vs Host Network** - The host network is the normal enviroment of your machine, docker networks emulates an networks where the containers are on the same network and uses the container name as its dns.
- - **Docker Volumes vs Bind Mounts** - When a Docker volume is created, the volume creates a new folder where the files are stored and contents get deleted when the volume is deleted, bind volumes are mounted over an host's machine folder, when the volume is deleted, the volume content is not deleted.
+ - **Virtual Machines vs Docker** - Virtual machines consist of an emulation of kernel and software; Docker only uses the software, using the kernel of the host machine.
+ - **Secrets vs Environment Variables** - Secrets are applied during machine creation; env variables are used during the container's execution.
+ - **Docker Network vs Host Network** - The host network is the normal environment of your machine; Docker networks emulate a network where the containers are on the same network and use the container name as its DNS.
+ - **Docker Volumes vs Bind Mounts** - When a Docker volume is created, the volume creates a new folder where the files are stored, and contents get deleted when the volume is deleted. Bind mounts are mounted over a host machine's folder; when the volume is deleted, the mounted folder's content is not deleted.
 
 Design choices:
- - secrets are stored in an env file, the project limitations makes difficult and less consistent the use of secrets.
- - This inception uses two networks, one for nginx and PHP-Wordpress, and another one for MariaDB and PHP-Wordpress, this is to better emulate the structure shown on the subject, where the nginx only communicates with the PHP-Wordpress and the PHP-Wordpress only communicates with MariaDB.
+ - Secrets are stored in an env file; the project limitations make it difficult and less consistent to use secrets.
+ - This Inception uses two networks: one for nginx and PHP-Wordpress, and another one for MariaDB and PHP-Wordpress. This is to better emulate the structure shown in the subject, where nginx only communicates with PHP-Wordpress and PHP-Wordpress only communicates with MariaDB.
 
 ## 2 - Instructions
-This project requires Docker, and contains an Makefile to build and start the containers, it also sets up the neccesary folder for the volumes to be stored locally.
+This project requires Docker and contains a Makefile to build and start the containers. It also sets up the necessary folder for the volumes to be stored locally.
 
-The Makefile comands are:
- - **make build** for setting up the volumes folder and the docker images.
+The Makefile commands are:
+ - **make build** for setting up the volumes folder and the Docker images.
  - **make up** to start the images.
- - **make all** to do all make build and make up.
+ - **make all** to do both make build and make up.
  - **make clean** to stop the containers.
- - **make fclean** to stop the containers and delete docker volumes.
- - **make prune** to remove everything from docker.
- - **make volume** prune to delete all docker volumes.
+ - **make fclean** to stop the containers and delete Docker volumes.
+ - **make prune** to remove everything from Docker.
+ - **make vprune** to delete all Docker volumes.
 
-For setting up with the .yml file, you must: docker-compose build and docker-compose up in the srcs folder.
-To access the containers, use **exec -ti _[container name]_**
+For setting up with the .yml file, you must run: `docker-compose build` and `docker-compose up` in the srcs folder.
+To access the containers, use **exec -ti _[container name]_**.
 
 ## 3 - Resources
  - <a href="https://docs.docker.com/reference/">Docker documentation</a>
@@ -39,6 +39,7 @@ To access the containers, use **exec -ti _[container name]_**
  - <a href="https://wordpress.org/documentation/">Wordpress documentation</a>
  - <a href="https://www.php.net/docs.php">PHP documentation</a>
 
-All config files based on the base .conf files found in the default service installation.
+All config files are based on the base .conf files found in the default service installation.
 
-AI used for eventual questions (E.X.: the was a point when i wasnt sure about something in SH syntax, i wasnt able to find an example, i asked th AI it was an missing space).
+AI used for eventual questions (E.X.: there was a point when I wasn’t sure about something in SH syntax; I wasn’t able to find an example, I asked the AI — it was a missing space).
+
